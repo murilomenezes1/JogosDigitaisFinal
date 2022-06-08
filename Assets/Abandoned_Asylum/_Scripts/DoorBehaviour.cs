@@ -10,6 +10,7 @@ public class DoorBehaviour : MonoBehaviour
 	public GameObject ActionDisplay;
 	public GameObject ActionText;
 	public GameObject Door;
+	public GameObject LeftDoor;
 	public AudioSource DoorSound;
     // Update is called once per frame
     void Update()
@@ -35,7 +36,8 @@ public class DoorBehaviour : MonoBehaviour
 
     			ActionDisplay.SetActive(false);
     			ActionText.SetActive(false);
-    			Door.GetComponent<Animation>().Play("DoorOpening");
+    			Door.GetComponent<Animation>().Play("DoorOpenAnim");
+    			LeftDoor.GetComponent<Animation>().Play("DoorOpenAnimLeft");
     			DoorSound.Play();
     		}
     	}
