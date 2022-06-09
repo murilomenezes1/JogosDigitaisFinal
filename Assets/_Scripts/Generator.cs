@@ -12,6 +12,8 @@ public class Generator : MonoBehaviour
 	public GameObject GeneratorBox;
 	public AudioSource GeneratorSound;
 	public GameObject PC;
+	public GameObject PrayingTrigger;
+	public GameObject Monster;
     // Update is called once per frame
     void Update()
     {
@@ -38,6 +40,8 @@ public class Generator : MonoBehaviour
     			ActionText.SetActive(false);
     			PC.SetActive(true);
     			GeneratorSound.Play();
+    			PrayingTrigger.SetActive(true);
+    			Monster.SetActive(true);
 
     		}
     	}
