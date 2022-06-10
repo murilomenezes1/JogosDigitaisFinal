@@ -14,6 +14,11 @@ public class Generator : MonoBehaviour
 	public GameObject PC;
 	public GameObject PrayingTrigger;
 	public GameObject Monster;
+	public GameObject Lights;
+	public GameObject Lights2;
+	public GameObject Lights3;
+	public GameObject Lights4;
+	public GameObject Lights5;    
     // Update is called once per frame
     void Update()
     {
@@ -42,7 +47,11 @@ public class Generator : MonoBehaviour
     			GeneratorSound.Play();
     			PrayingTrigger.SetActive(true);
     			Monster.SetActive(true);
-
+    			Lights.SetActive(true);
+    			Lights2.SetActive(true);
+    			Lights3.SetActive(true);
+    			Lights4.SetActive(true);
+    			Lights5.SetActive(true);
     		}
     	}
     }

@@ -9,6 +9,9 @@ public class Opening : MonoBehaviour
     public GameObject Camera;
     void Start()
     {
+
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
     	StartCoroutine (ScenePlayer ());
         
     }

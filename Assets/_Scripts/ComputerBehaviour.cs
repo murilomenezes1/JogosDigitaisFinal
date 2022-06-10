@@ -19,6 +19,7 @@ public class ComputerBehaviour : MonoBehaviour
     public string password = "2751";
     public GameObject ElevatorDoor;
     public AudioSource CorrectSound;
+    public GameObject ElevatorTrigger;
 
     public bool passwordPass;
     // Update is called once per frame
@@ -39,9 +40,28 @@ public class ComputerBehaviour : MonoBehaviour
             passwordCanvas.SetActive(true);
             PC_camera.SetActive(true);
 
-            ActionText.GetComponent<Text>().text = "Digite a Senha";
+            ActionText.GetComponent<Text>().text = "Digite a Senha (F para sair)";
             //ActionDisplay.SetActive(true);
             ActionText.SetActive(true);
+
+
+
+        if(Input.GetKeyDown(KeyCode.F))
+        {
+            passwordCheck = false;
+            ActionText.SetActive(false);
+            PlayerCamera.SetActive(true);
+            Player.SetActive(true);
+            this.GetComponent<BoxCollider>().enabled = true;
+            PC_camera.SetActive(false);
+            passwordCanvas.SetActive(false);
+            Cursor.lockState = CursorLockMode.Locked;
+            Cursor.visible = false;
+        }
+
+
+
+
 
             if (PasswordInput.GetComponent<Text>().text == password && Input.GetKeyDown(KeyCode.Return))
             {
@@ -58,6 +78,7 @@ public class ComputerBehaviour : MonoBehaviour
                 Cursor.visible = false;
                 passwordCanvas.SetActive(false);
                 ElevatorDoor.SetActive(false);
+                ElevatorTrigger.SetActive(true);
                 passwordPass = true;
 
             }

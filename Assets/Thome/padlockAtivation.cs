@@ -17,6 +17,7 @@ public class padlockAtivation : MonoBehaviour
     public AudioSource source;
     // public GameObject Player;
     private bool flag = false;
+    public GameObject Player;
  
     void OnTriggerEnter(Collider other)
     {
@@ -37,16 +38,18 @@ public class padlockAtivation : MonoBehaviour
     {
 
         
-        if(input == curPassword)
+        if(input == curPassword && Input.GetKeyDown(KeyCode.Return))
         {
-            doorOpen = true;
             source.Play();
+            Player.GetComponent<FirstPersonController>().enabled = true;
+            doorOpen = true;
             
         }
  
         if(doorOpen)
         {
-            new WaitForSeconds(5);
+            //new WaitForSeconds(5);
+            
             var newRot = Quaternion.RotateTowards(doorHinge.rotation, Quaternion.Euler(0.0f, -400.0f, 0.0f), Time.deltaTime * 250);
             doorHinge.rotation = newRot;
             var newRot2 = Quaternion.RotateTowards(doorHinge2.rotation, Quaternion.Euler(0.0f, -40.0f, 0.0f), Time.deltaTime * 250);
@@ -98,6 +101,7 @@ public class padlockAtivation : MonoBehaviour
                 {
                     keypadScreen = true;
                     onTrigger = false;
+                    Player.GetComponent<FirstPersonController>().enabled = false;
                 }
             }
  

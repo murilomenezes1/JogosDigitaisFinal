@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
+using UnityStandardAssets.Characters.FirstPerson;
 
 public class choosePill : MonoBehaviour
 {
@@ -16,6 +18,7 @@ public class choosePill : MonoBehaviour
     private string name = "wrongPill";
     public GameObject Player;
     public bool onTrigger;
+    public GameObject EndScreen;
     // void start(){
     //     anim = gameObject.GetComponent<Animation>();
     // }
@@ -36,13 +39,18 @@ public class choosePill : MonoBehaviour
        
             Destroy(Rpill);
             gotRed.Play();
+            Player.GetComponent<Animation>().Play("death");
+            Player.GetComponent<FirstPersonController>().enabled = false;
+            Cursor.visible = true;
+            Cursor.lockState = CursorLockMode.None;
+            StartCoroutine(EndGame ());
+            
         }
         if(Input.GetKeyDown(KeyCode.B)){
             Destroy(Bpill);
-            gotBlue.Play();
-            Player.GetComponent<Animation>().Play("death");
+            Player.GetComponent<FirstPersonController>().enabled = false;
+            StartCoroutine (ScenePlayer ());
             // anim.Play(name);
-            
         }
         }
         
@@ -52,5 +60,18 @@ public class choosePill : MonoBehaviour
         if(onTrigger){
             GUI.Box(new Rect(50, 50, 500, 50), "Press 'R' to take red pill. Press 'B' to take blue pill");
         }
+    }
+
+    IEnumerator ScenePlayer()
+    {
+    
+        yield return new WaitForSeconds(3f);
+        SceneManager.LoadScene("BlueEnding");
+    }
+
+    IEnumerator EndGame()
+    {
+        yield return new WaitForSeconds(3f);
+        EndScreen.SetActive(true);
     }
 }

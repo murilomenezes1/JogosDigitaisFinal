@@ -13,6 +13,7 @@ public class PrayingScript : MonoBehaviour
     void OnTriggerEnter()
     {
     	Player.GetComponent<FirstPersonController>().enabled = false;
+        this.GetComponent<BoxCollider>().enabled = false;
     	StartCoroutine (ScenePlayer ());
         
     }
@@ -21,7 +22,7 @@ public class PrayingScript : MonoBehaviour
     {
 
     	Monster.GetComponent<Animation>().Play("Take 001");
-    	yield return new WaitForSeconds(9f);
+    	yield return new WaitForSeconds(7.5f);
     
     	Monster.SetActive(false);
     	Player.GetComponent<FirstPersonController>().enabled = true;
